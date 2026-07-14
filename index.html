@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Happy Anniversary My Love</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ========== หน้าบังคับเปิดเพลงก่อนเข้าเว็บ (แสดงก่อนทุกอย่าง) ========== -->
+<div id="music-gate">
+  <div class="gate-card glass-card">
+    <div class="gate-note"></div>
+    <h2 class="gate-title">ก่อนเปิดของขวัญ...</h2>
+    <p class="gate-desc">เปิดเพลงเป็นเพลงประกอบก่อนนะ<br>จะได้ฟีลกว่าเดิม</p>
+    <button class="btn" id="btn-open-music">เปิดเพลงเลย</button>
+    <p class="gate-hint">ไม่เปิดงอนนะ</p>
+  </div>
+</div>
+
+<!-- พื้นหลัง Ambient (หัวใจลอย/ดาว/ฟองอากาศ/กลีบดอกไม้) -->
+<div id="bg-layer"></div>
+
+<!-- จุดบอกตำแหน่ง section (desktop) -->
+<div id="progress-dots"></div>
+
+<div id="app">
+
+  <!-- ========== SECTION 1: HERO / GIFT ========== -->
+  <section class="section active" id="sec-hero" data-index="0">
+    <div class="section-inner fade-in">
+      <h1 class="hero-title" id="hero-title"></h1>
+      <p class="hero-sub" id="hero-sub"></p>
+      <div class="gift-zone">
+        <div class="gift-box" id="gift-box" aria-label="เปิดของขวัญ" role="button" tabindex="0">
+          <div class="box-body"></div>
+          <div class="ribbon-v"></div>
+          <div class="box-lid"><div class="ribbon-h"></div></div>
+          <div class="bow">🎀</div>
+        </div>
+        <button class="btn" id="btn-open-gift">เปิดของขวัญ</button>
+        <p class="hint-text">แตะที่กล่อง หรือกดปุ่มด้านบนได้เลยนะ</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SECTION 2: TYPING ========== -->
+  <section class="section" id="sec-typing" data-index="1">
+    <div class="section-inner">
+      <div class="glass-card">
+        <h2 class="typing-title">Happy Anniversary</h2>
+        <div class="typing-box" id="typing-box"><span id="typing-text"></span><span class="typing-cursor" id="typing-cursor">&nbsp;</span></div>
+      </div>
+      <button class="btn-ghost" id="btn-to-album" style="margin-top:30px;display:none;">ดูอัลบั้มความทรงจำ →</button>
+    </div>
+  </section>
+
+  <!-- ========== SECTION 3: ALBUM ========== -->
+  <section class="section" id="sec-album" data-index="2">
+    <div class="section-inner">
+      <h2 class="section-title">Our Album</h2>
+      <p class="section-desc">ความทรงจำดีๆ ที่เก็บไว้ด้วยกัน</p>
+      <div class="album-grid" id="album-grid"></div>
+      <button class="btn-ghost" id="btn-to-letter" style="margin-top:34px;">อ่านจดหมายรัก →</button>
+    </div>
+  </section>
+
+  <!-- ========== SECTION 4: LOVE LETTER ========== -->
+  <section class="section" id="sec-letter" data-index="3">
+    <div class="section-inner">
+      <h2 class="section-title">Love Letter</h2>
+      <p class="section-desc">มีจดหมายฉบับหนึ่งรออยู่นะ</p>
+      <div class="envelope-wrap">
+        <div class="env-label">ถึง: <span id="env-to-name"></span></div>
+        <div class="envelope" id="envelope" role="button" tabindex="0" aria-label="เปิดซองจดหมาย">
+          <div class="env-shadow"></div>
+          <div class="env-back">
+            <div class="env-fold-left"></div>
+            <div class="env-fold-right"></div>
+          </div>
+          <div class="letter-peek">
+            <div class="lp-line"></div>
+            <div class="lp-line w70"></div>
+            <div class="lp-line w40"></div>
+          </div>
+          <div class="env-flap"></div>
+          <div class="env-stamp"></div>
+          <div class="env-seal"><span class="seal-heart"></span></div>
+        </div>
+        <p class="hint-text">แตะที่ซองจดหมายเพื่อเปิดอ่าน</p>
+      </div>
+      <button class="btn-ghost" id="btn-to-timeline" style="margin-top:34px;">ดู Timeline ของเรา →</button>
+    </div>
+  </section>
+
+  <!-- ========== SECTION 5: TIMELINE ========== -->
+  <section class="section" id="sec-timeline" data-index="4">
+    <div class="section-inner">
+      <h2 class="section-title">Memory Timeline</h2>
+      <p class="section-desc">เส้นทางความทรงจำของเราสองคน</p>
+      <div class="timeline" id="timeline-list"></div>
+      <button class="btn-ghost" id="btn-to-lovemeter">ต่อไปกันเลย →</button>
+    </div>
+  </section>
+
+  <!-- ========== SECTION 6: LOVE METER ========== -->
+  <section class="section" id="sec-lovemeter" data-index="5">
+    <div class="section-inner">
+      <h2 class="section-title">Love Meter</h2>
+      <p class="section-desc">กดหัวใจดวงนี้ได้เรื่อยๆ เลยนะ</p>
+      <div class="love-count"><span id="love-count-num">0</span> Love</div>
+      <button class="love-heart-btn" id="love-heart">❤️</button>
+      <div style="margin-top:34px;"><button class="btn-ghost" id="btn-to-game">ไปเล่นเกมกันเถอะ →</button></div>
+    </div>
+  </section>
+
+  <!-- ========== SECTION 7: MINI GAME ========== -->
+  <section class="section" id="sec-game" data-index="6">
+    <div class="section-inner">
+      <h2 class="section-title">ตามหาหัวใจ</h2>
+      <p class="section-desc" id="game-desc">หาหัวใจสีชมพู ท่ามกลางหัวใจอื่นๆ ให้ครบ 5 ดวง</p>
+      <div class="game-field" id="game-field"></div>
+      <div class="game-status" id="game-status">เจอแล้ว: 0 / 5</div>
+      <div class="game-win" id="game-win" style="display:none;">You Found My Heart</div>
+      <button class="btn-ghost" id="btn-to-coupon" style="margin-top:20px;">ไปดูคูปองกันต่อ →</button>
+    </div>
+  </section>
+
+  <!-- ========== SECTION 8: COUPON ========== -->
+  <section class="section" id="sec-coupon" data-index="7">
+    <div class="section-inner">
+      <h2 class="section-title">คูปองพิเศษ</h2>
+      <p class="section-desc">แตะเพื่อเปิดคูปองแต่ละใบ</p>
+      <div class="coupon-grid" id="coupon-grid"></div>
+      <button class="btn-ghost" id="btn-to-final" style="margin-top:34px;">ไปต่อกันเถอะ →</button>
+    </div>
+  </section>
+
+  <!-- ========== SECTION 10: FINAL (NIGHT SKY) ========== -->
+  <section class="section night-section" id="sec-final" data-index="8">
+    <div class="section-inner">
+      <div class="moon"></div>
+      <p class="final-quote" id="final-quote"></p>
+      <button class="btn" id="btn-to-ending" style="margin-top:40px;">ไปหน้าสุดท้ายกัน →</button>
+    </div>
+  </section>
+
+  <!-- ========== ENDING ========== -->
+  <section class="section" id="sec-ending" data-index="9">
+    <div class="section-inner">
+      <div id="ending-pre">
+        <h2 class="section-title">ก่อนจบ ยังมีอีกนิดนึง...</h2>
+        <button class="btn" id="btn-final-heart">กดตรงนี้สิ</button>
+      </div>
+      <div id="ending-post" style="display:none;">
+        <p class="ending-msg" id="ending-message"></p>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ========== Lightbox (Album) ========== -->
+<div class="lightbox" id="lightbox">
+  <button class="lb-close" id="lb-close">✕</button>
+  <button class="lb-arrow lb-prev" id="lb-prev">←</button>
+  <img id="lightbox-img" src="" alt="memory photo">
+  <button class="lb-arrow lb-next" id="lb-next">→</button>
+</div>
+
+<!-- ========== Letter modal ========== -->
+<div class="letter-modal" id="letter-modal">
+  <div class="letter-paper" id="letter-paper">
+    <button class="letter-close" id="letter-close">✕</button>
+    <div id="letter-text"></div>
+  </div>
+</div>
+
+<!-- ========== Secret overlay ========== -->
+<div class="secret-overlay" id="secret-overlay">
+  <div class="sx-msg" id="secret-msg"></div>
+</div>
+<button id="secret-btn" aria-label="?"></button>
+
+<!-- ========== Music widget ========== -->
+<div id="music-widget">
+  <button id="music-toggle"><span class="note-icon"></span></button>
+  <input type="range" id="music-vol" min="0" max="1" step="0.05" value="0.5">
+  <audio id="bg-music" loop></audio>
+</div>
+
+<!-- Full heart overlay for ending -->
+<div class="full-heart-overlay" id="full-heart-overlay"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
